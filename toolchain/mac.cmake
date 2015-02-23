@@ -1,9 +1,13 @@
 # set target architecture, possible values: armv7, armv6 or arm64
 set(IOS_TARGET_ARCH arm64)
+
 # set SDK path, should be ok on default installation
-set(CMAKE_IOS_SDK_ROOT /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk)
+execute_process(COMMAND xcrun --sdk iphoneos --show-sdk-path OUTPUT_VARIABLE CMAKE_IOS_SDK_ROOT OUTPUT_STRIP_TRAILING_WHITESPACE)
+message(STATUS "CMAKE_IOS_SDK_ROOT: ${CMAKE_IOS_SDK_ROOT}")
+
 # set path of ranlib tool
-set(RANLIB_PATH /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib)
+execute_process(COMMAND xcrun --sdk iphoneos --find ranlib OUTPUT_VARIABLE RANLIB_PATH OUTPUT_STRIP_TRAILING_WHITESPACE)
+message(STATUS "RANLIB_PATH: ${RANLIB_PATH}")
 
 
 
